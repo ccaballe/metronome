@@ -88,7 +88,7 @@ def test_get_job_run():
         run_id = client.get_runs(job_id)[0]['id']
         run = client.get_run(job_id, run_id)
         assert run['id'] == run_id
-        assert run['status'] == 'ACTIVE'
+        assert run['status'] in ['ACTIVE', 'INITIAL']
 
 
 def test_stop_job_run():
