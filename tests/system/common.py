@@ -2,7 +2,7 @@ from shakedown import *
 from dcos import metronome
 
 
-def job_no_schedule(id='pikachu', cmd='sleep 10000'):
+def job_no_schedule(id='pikachu', cmd='sleep 100000'):
     return {
         'id': id,
         'description': 'electrifying rodent',
