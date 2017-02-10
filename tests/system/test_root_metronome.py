@@ -145,7 +145,7 @@ def test_job_constraints():
                 task = get_job_tasks(job_id, run_id)[0]
                 task_ip = task['statuses'][0]['container_status']['network_infos'][0]['ip_addresses'][0]['ip_address']
                 assert task_ip == host
-                
+
             client.kill_run(job_id, run_id)
 
         assert len(client.get_runs(job_id)) == 0
