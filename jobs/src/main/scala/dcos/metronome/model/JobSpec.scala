@@ -2,6 +2,8 @@ package dcos.metronome.model
 
 import com.wix.accord.dsl._
 import com.wix.accord.Validator
+import dcos.metronome.utils.glue.MarathonConversions
+import mesosphere.marathon
 import mesosphere.marathon.api.v2.Validation._
 import mesosphere.marathon.plugin.{ Secret, EnvVarValue, RunSpec }
 
@@ -18,8 +20,8 @@ case class JobSpec(
 
   override def user: Option[String] = run.user
   override def acceptedResourceRoles: Option[Predef.Set[String]] = None
-  override def secrets: Map[String, Secret] = Map.empty
-  override def env: Map[String, EnvVarValue] = mesosphere.marathon.state.EnvVarValue(run.env)
+  override def secrets: Map[String, Secret] = MarathonConversions.secretsToMarathon(run.secrets)
+  override def env: Map[String, marathon.state.EnvVarValue] = MarathonConversions.envVarToMarathon(run.env)
 }
 
 object JobSpec {

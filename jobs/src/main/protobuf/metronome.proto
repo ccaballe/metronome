@@ -173,6 +173,24 @@ message JobSpec {
       optional int64 activeDeadline = 2;
     }
     optional RestartSpec restart = 13;
-  }
+
+
+      optional int64 task_kill_grace_period_seconds = 14;
+
+      // key value pair used to store secrets path
+      message EnvironmentVariableSecret {
+        optional string name = 1;
+        optional string secretId = 2;
+      }
+      repeated EnvironmentVariableSecret environmentSecrets = 15;
+
+      // key value pair used to store secrets path
+      message Secret {
+        optional string id = 1;
+        optional string source = 2;
+      }
+      repeated Secret secrets = 16;
+      
+    }
   optional RunSpec run = 6;
 }
